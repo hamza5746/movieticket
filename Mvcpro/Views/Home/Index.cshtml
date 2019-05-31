@@ -1,0 +1,87 @@
+﻿@model Mvcpro.ViewModel.vmCinema
+
+@{
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript">
+    
+</script>
+<h2>Index</h2>
+<div class="container">
+    
+        <form class="frmrec">
+            <div class="col-md-12">
+
+
+                <img src="http://www.nueplex.com/assets/web/images/calander-icon.png" alt="" class="icon" style=" position relative; top -3px";>SHOW TIME
+                &nbsp; &nbsp;
+                <select name="date" id="dateShowTime" value="@(ViewBag==null?ViewBag.date:"")">
+                    @if (ViewBag.date != null)
+                    {
+                        <option value="@ViewBag.date" selected>@ViewBag.date</option>
+                    }
+                    <option value="12/22/2017" se>12-22-2017</option>
+                    <option value="12/23/2017">12-23-2017</option>
+                    <option value="12/24/2017">12-24-2017</option>
+                </select>
+                
+                <input type="submit" value="Search" />
+            </div>
+          
+                @if (Model.Shows != null)
+                {
+                    foreach (var cin in Model.Cinemas)
+                    {
+                        <div class="row" style="background-color:dimgrey">
+
+                            <h2>@cin.cinema_name</h2>
+                        </div>
+                            <div class="row">
+                            @foreach (var date in Model.Shows)
+                            {
+                            //var cinema = Model.Cinemas.Where(c => c.cinema_id == date.cinema_id).Single().shows;
+
+                            if (date.cinema_id == cin.cinema_id)
+                            {
+
+
+                            @*@if (date.movie_id == date.movy.movie_id)
+                                {*@
+                            @*@foreach (var cin in cinema)
+                                {*@
+                                    <div class="col-md-4">
+                                        <div class="col-md-4">
+                                            <div class="img">
+                                                 <img src="@date.movy.poster_path" alt="@date.movy.movie_name" title="@date.movy.movie_name" class="img-responsive" />
+                                                
+                                            </div>
+                                            @*@foreach (var movie in movies)
+                                                {*@
+                                                 </div>
+                                        <div class="col-md-8">
+
+                                            <label>@date.movy.movie_name</label>
+
+                                            <p>@date.start_time - @date.end_time</p>
+                                            <p>Runtime - @date.movy.runtime</p>
+
+                                            <button> @Html.ActionLink("Book Tickets", "bktickets", new { id = date.show_id }) </button>
+                                            @*}*@
+                                        </div>
+                                    
+                                    </div>
+                            @*}*@
+                            @*//}*@
+
+
+                            }
+                            }
+                        </div>
+                    }
+                }
+
+
+
+        </form>
+    
+</div>
